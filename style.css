@@ -1,0 +1,106 @@
+/* Reset básico para garantir consistência entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Container principal */
+.container {
+    width: 100%;
+    max-width: 360px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin: 20px;
+    position: relative;
+}
+
+/* Logo ou título principal */
+h1 {
+    font-size: 28px;
+    color: #262626;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: 500;
+    color: #8e8e8e;
+}
+
+input {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #0095f6;
+}
+
+button {
+    padding: 15px;
+    background-color: #0095f6;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #007acc;
+}
+
+/* Links */
+a {
+    color: #0095f6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Mensagens de erro/sucesso */
+p.message {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #e94f4f;
+}
+
+/* Ajustes de layout para dispositivos móveis */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro</h1>
+        <form action="/register" method="post">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <br>
+        <p><a href="/">Voltar ao Login</a></p>
+
+    </div>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Dados do formulário
+            const formData = new FormData(this);
+
+            // Enviar dados para o servidor
+            fetch('/register', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Exibir mensagem de sucesso
+                    const messageContainer = document.getElementById('message-container');
+                    messageContainer.textContent = 'Cadastro realizado com sucesso!';
+                    messageContainer.style.display = 'block';
+
+                    // Redirecionar após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = '/vote'; // Substitua com o caminho correto da sua página de votação
+                    }, 2000);
+                } else {
+                    alert('Erro ao cadastrar: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao cadastrar. Tente novamente.');
+            });
+        });
+    </script>
+</body>
+</html>

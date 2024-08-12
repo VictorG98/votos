@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votação - Jaguaribe 2024</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Votação para Vereadores - Jaguaribe 2024</h1>
+        <form id="vote-form" action="/vote" method="POST">
+            <h3>Selecione seu candidato:</h3>
+            <br>
+            <label>
+                <input type="radio" name="candidate" value="Márcio Oliveira" required> Márcio Oliveira
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Nayana Lima"> Nayana Lima
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Kassius Mourão"> Kassius Mourão
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Dra. Mana"> Dra. Mana
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Valnei"> Valnei
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Bea Guedes"> Bea Guedes
+            </label><br>
+            <label>
+                <input type="radio" name="candidate" value="Nulo ou Outro"> Nulo ou Outro
+            </label><br><br>
+            <button type="submit">Enviar Voto</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('vote-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Dados do formulário
+            const formData = new FormData(this);
+
+            // Enviar dados para o servidor
+            fetch('/vote', {
+                method: 'POST',
+                body: new URLSearchParams(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Exibir mensagem de sucesso e redirecionar se necessário
+                    alert('Voto enviado com sucesso!');
+                    // Redirecionar após o envio, se necessário
+                    window.location.href = '/'; // Redireciona para a página inicial ou outra página
+                } else {
+                    alert('Erro ao enviar voto: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao enviar voto. Tente novamente.');
+            });
+        });
+    </script>
+</body>
+</html>
